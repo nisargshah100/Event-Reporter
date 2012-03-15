@@ -1,0 +1,55 @@
+general: |
+  Event Reporter
+  NOTE: Make the command line screen large to see properly formatted data in print functions.
+
+  Commands:
+    load <filename>
+    help
+    help <command>
+    queue count
+    queue print
+    queue print by <attribute>
+    queue save to <filename>
+    find <attribute> <criteria>
+    add find <attribute> <criteria>
+    subtract find <attribute> <criteria>
+
+  Extensions:
+    - Improving queue print
+    - Implementing Queue Math
+
+load: |
+  Loads a file (if no file is specified event_attendees.csv will be used)
+  COMMAND: load <filename>
+
+queue_count: |
+  Counts the number of attendees in the queue
+  COMMAND: queue count
+
+queue_print: |
+  Displays all the attendees (using longest value in column as the column length)
+  COMMAND: queue print
+
+queue_clear: |
+  Clears the queue
+  COMMAND: queue clear
+
+queue_save_to: |
+  Saves the queue to file
+  COMMAND: queue save to <filename>
+
+find: |
+  Finds an attribute from the data set and stores it into queue
+  COMMAND: find <attribute> <value>
+  EXAMPLE: find zipcode 00000
+
+add: |
+  Adds additional filter to the queue. Adds everything found in 
+  add to the current queue.
+  COMMAND: add find <attribute> <value>
+  EXAMPLE: add find zipcode 11111
+
+subtract: |
+  Removes items from the current queue that match this filter
+  COMMAND: subtract find <attribute> <value>
+  EXAMPLE: subtract find zipcode 11111
