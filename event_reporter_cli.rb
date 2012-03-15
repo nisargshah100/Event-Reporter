@@ -55,8 +55,8 @@ class EventReporterCli
   end
 
   def load_history
-    commands = YAML.load(File.open('.history'))
-    commands.each { |c| Readline::HISTORY.push(c) }
+    commands = YAML.load(File.open('.history')) if File.exists?('.history')
+    commands.each { |c| Readline::HISTORY.push(c) } if commands
   end
 
 end

@@ -6,8 +6,8 @@ require 'ruby-debug'
 
 class EventReporter
   CSV_OPTIONS = {:headers => true, :header_converters => :symbol}
-  HEADERS = [:last_name, :first_name, :email_address, :zipcode, :city, :state,
-    :street]
+  HEADERS = [:last_name, :first_name, :email_address, :zipcode, :city, :state, 
+    :homephone, :street]
   ALLOWED_COMMANDS = [:load, :help, :queue, :find, :add, :subtract]
   attr_accessor :attendees, :queue_attendees, :header_lengths
 
@@ -102,8 +102,11 @@ class EventReporter
     self.header_lengths = {}
 
     HEADERS.each do |attribute|
-      length = (attendees.max_by {
-        |x| (x.send(attribute) || "").length }).send(attribute).length
+      value = attendees.max_by do
+        |x| (x.send(attribute).to_s || "").length 
+      end
+      length = value.send(attribute).to_s.length
+
       length = attribute.length if length < attribute.length
       self.header_lengths[attribute] = length
     end
@@ -127,7 +130,7 @@ class EventReporter
 
       attendees.each_with_index do |attendee, index|
         items = HEADERS.collect do |attribute|
-          "#{(attendee.send(attribute) || "")
+          "#{(attendee.send(attribute).to_s || "")
             .ljust(self.header_lengths[attribute])}"
         end
         puts items.join(" ")
