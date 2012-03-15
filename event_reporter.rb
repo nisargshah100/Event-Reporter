@@ -51,7 +51,7 @@ class EventReporter
 
   def find(cmd)
     attribute = (cmd[1] || "").downcase.to_sym
-    value = cmd[2] || ""
+    value = cmd[2..-1].join(" ") || ""
 
     if self.attendees and HEADERS.include?(attribute) and value
       self.queue_attendees = attendees.find_all do |attendee|

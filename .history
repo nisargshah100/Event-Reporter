@@ -13,3 +13,16 @@
 - load
 - find zipcode 00000
 - queue print
+- load
+- find zipcode 00000
+- queue print
+- queue save to lala.csv
+- load lala.csv
+- queue count
+- queue print
+- find city morgontown
+- queue count
+- find city q
+- queue count
+- queue print
+- queue save to q.csv
